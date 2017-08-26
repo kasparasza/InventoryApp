@@ -1,0 +1,126 @@
+<resources>
+    <string name="app_name">Your Fruit Basket</string>
+
+    <!-- Strings used in toast messages -->
+    <string name="toast_insert_to_db_success">An item was successfully added to the inventory.</string>
+    <string name="toast_insert_to_db_error">An error was encountered while adding the item to the inventory.</string>
+    <string name="toast_insert_to_db_error_bulk_insert">An error was encountered while adding the items to the inventory.</string>
+    <string name="toast_data_input_check_error">The following fields have no data set or contain errors:\n</string>
+    <string name="toast_input_field_item_name">item name</string>
+    <string name="toast_input_field_quantity">quantity</string>
+    <string name="toast_input_field_price">price</string>
+    <string name="toast_input_field_image">image</string>
+    <string name="toast_input_field_supplier_name">supplier\'s name</string>
+    <string name="toast_input_field_supplier_contacts">supplier\'s contacts</string>
+    <string name="toast_input_field_supplier_e_mail">supplier\'s @-mail</string>
+    <string name="toast_input_field_supplier_phone">supplier\'s phone</string>
+    <string name="toast_data_update_success">Item data was successfully updated.</string>
+    <string name="toast_data_update_fail">There was an error when trying to update the data.</string>
+    <string name="toast_no_sale_is_possible">There are no items left.</string>
+    <string name="toast_quantity_value_bounds">Quantity cannot be greater.</string>
+    <string name="toast_quantity_value_bounds_with_value_provided">Quantity cannot be greater than %1$d.</string>
+    <string name="toast_delete_from_db_success">Information successfully deleted.</string>
+    <string name="toast_delete_from_db_error">An error was encountered while trying to delete.</string>
+
+    <!-- Strings used in Dialogs -->
+    <string name="dialog_question_unsaved_changes">There are unsaved changes.</string>
+    <string name="dialog_option_discard_changes">Discard</string>
+    <string name="dialog_option_save_changes">Save</string>
+    <string name="dialog_question_delete_item">Do you want to delete the item?</string>
+    <string name="dialog_question_delete_all_items">Do you want to delete all the items from the list?</string>
+    <string name="dialog_option_proceed_with_deletion">Delete</string>
+    <string name="dialog_option_do_not_delete">Cancel</string>
+    <string name="dialog_question_insert_multiple_dummy_items">This will insert a number of dummy items into the list. Do you want to proceed?</string>
+    <string name="dialog_option_proceed_with_insertion">Insert</string>
+    <string name="dialog_option_do_not_insert">Cancel</string>
+
+    <!-- Strings used in EditInventoryActivity -->
+    <string name="edit_inventory_item_name_header">name of the item</string>
+    <string name="edit_inventory_quantity_header">quantity in store</string>
+    <string name="edit_inventory_price_header">price per kilogram</string>
+    <string name="edit_inventory_image_header">image of the item</string>
+    <string name="edit_inventory_empty_image_text">Click to select an image.</string>
+    <string name="edit_inventory_image_intent_chooser_text">Select a picture</string>
+    <string name="edit_inventory_description_header">description</string>
+    <string name="edit_inventory_supplier_name_header">name of the supplier</string>
+    <string name="edit_inventory_supplier_email_header">supplier\'s @-mail</string>
+    <string name="edit_inventory_supplier_phone_header">supplier\'s phone</string>
+    <string name="edit_inventory_label_edit_item">Edit Item Information</string>
+    <string name="edit_inventory_label_add_item">Add an Item</string>
+    <string name="edit_inventory_button_save_item">SAVE</string>
+
+    <!-- Strings used in AllInventoryViewActivity -->
+    <string name="all_inventory_quantity_header">quantity in store</string>
+    <string name="all_inventory_quantity_measurement_kg">" kg"</string>
+    <string name="all_inventory_price_text">price %1$.2f /kg</string> <!-- %1$.2f == format character for a float number,
+    where ".2" sets the number of decimal points to be displayed-->
+    <string name="all_inventory_empty_view_title_text">There are no items in store.</string>
+    <string name="all_inventory_empty_view_other_text">Click the button bellow to add an item.</string>
+    <string name="all_inventory_add_item_text">ADD MORE</string>
+
+    <!-- Strings used in ItemDetailsActivity -->
+    <string name="item_details_price_header">Price</string>
+    <string name="item_details_quantity_header">Quantity in store</string>
+    <string name="item_details_add_one_button"> + </string>
+    <string name="item_details_add_ten_button">+10</string>
+    <string name="item_details_decrease_by_one_button"> - </string>
+    <string name="item_details_decrease_by_ten_button">-10</string>
+    <string name="item_details_supplier_header">Supplier:</string>
+    <string name="item_details_supplier_e_mail">"@-mail"</string>
+    <string name="item_details_supplier_phone">phone</string>
+    <string name="item_details_price_text">%1$.2f /kg</string> <!-- %1$.2f == format character for a float number,
+    where ".2" sets the number of decimal points to be displayed-->
+    <string name="item_details_quantity_measurement_kg">" kg"</string>
+    <string name="item_details_email_subject_text">"Order for %1$s"</string>
+    <string name="item_details_edit_item_text">EDIT</string>
+
+    <!-- Strings used for Menu items -->
+    <string name="menu_item_save_changes">Save changes</string>
+    <string name="menu_item_delete">Delete the item</string>
+    <string name="menu_item_delete_all">Delete all items</string>
+    <string name="menu_item_insert_bulk">Insert dummy items</string>
+
+    <!-- Strings used for dummy Fruit items -->
+    <string name="dummy_aubergine_name">Aubergines</string>
+    <string name="dummy_aubergine_description">Cultivated in their native India and imported fresh.
+        Aubergine becomes tender when cooked and develops a rich, complex flavor.</string>
+    <string name="dummy_aubergine_supplier">Ganges Aubergines</string>
+    <string name="dummy_aubergine_supplier_email">ganges_aubergines@post.in</string>
+    <string name="dummy_aubergine_supplier_phone">+91-233-245-333</string>
+    <string name="dummy_banana_name">Bananas</string>
+    <string name="dummy_banana_description">Our bananas are just of the right ripeness and sweetness. Brought to your table
+        from sunny Ecuador. In a 100 gram amount, bananas supply 89 Calories and are a rich source of vitamin B6.</string>
+    <string name="dummy_banana_supplier">Banana Co</string>
+    <string name="dummy_banana_supplier_email">good.bananas@post.ec</string>
+    <string name="dummy_banana_supplier_phone">+593-012-893</string>
+    <string name="dummy_cherry_name">Cherries</string>
+    <string name="dummy_cherry_description">We offer sweet cherries which will be perfect as a snack or
+        that missing ingredient for a dessert that you make. Our cherries are collected locally and therefore they are ripe and fresh.</string>
+    <string name="dummy_cherry_supplier">Fruit Garden</string>
+    <string name="dummy_cherry_supplier_email">fruit_garden@post.eu</string>
+    <string name="dummy_cherry_supplier_phone">+48-773-893-393</string>
+    <string name="dummy_grapefruit_name">Grapefruits</string>
+    <string name="dummy_grapefruit_description">Perfect subtropical citrus fruits with sour to semi-sweet somewhat bitter taste. Cultivated in EU.</string>
+    <string name="dummy_grapefruit_supplier">Spanish Fruits</string>
+    <string name="dummy_grapefruit_supplier_email">spainfruits@post.es</string>
+    <string name="dummy_grapefruit_supplier_phone">+34-565-129-393</string>
+    <string name="dummy_strawberry_name">Strawberries</string>
+    <string name="dummy_strawberry_description">Fresh and sweet-scented. Cultivated in EU. It can be consumed in large quantities,
+        either fresh or in a number of prepared foods: juice, pies, ice creams, milkshakes, and chocolates.</string>
+    <string name="dummy_strawberry_supplier">Spanish Fruits</string>
+    <string name="dummy_strawberry_supplier_email">spainfruits@post.es</string>
+    <string name="dummy_strawberry_supplier_phone">+34-565-129-393</string>
+    <string name="dummy_pineapple_name">Pineapples</string>
+    <string name="dummy_pineapple_description">Perfectly sized, juicy, offering tasty sweet and sourness.
+        Pineapples can be consumed fresh, cooked, juiced, or preserved.</string>
+    <string name="dummy_pineapple_supplier">Asian Imports</string>
+    <string name="dummy_pineapple_supplier_email">asian_imports@post.ph</string>
+    <string name="dummy_pineapple_supplier_phone">+63-110-129-93</string>
+    <string name="dummy_tomato_name">Tomatoes</string>
+    <string name="dummy_tomato_description">Our tomatoes are all natural and with real taste. They are not those commercially grown tomato varieties,
+        that lack of sugar and taste in general.</string>
+    <string name="dummy_tomato_supplier">Tomatoes Inc</string>
+    <string name="dummy_tomato_supplier_email">tomatina@post.pl</string>
+    <string name="dummy_tomato_supplier_phone">+48-648-29-93</string>
+
+</resources>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.kasparasza.inventoryapp">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!-- Splash screen activity (it has no parent activity) -->
+        <activity
+            android:name=".SplashScreenActivity"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- parent activity -->
+        <activity android:name=".AllInventoryViewActivity"/>
+
+        <!-- child activity -->
+        <activity
+            android:name=".EditInventoryActivity"
+            android:parentActivityName=".AllInventoryViewActivity">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".AllInventoryViewActivity" />
+        </activity>
+
+        <!-- child activity -->
+        <activity
+            android:name=".ItemDetailsActivity"
+            android:parentActivityName=".AllInventoryViewActivity">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".AllInventoryViewActivity" />
+        </activity>
+
+        <!-- content provider -->
+        <provider
+            android:name=".database.InventoryProvider"
+            android:authorities="com.example.kasparasza.inventoryapp.database"
+            android:exported="false"
+            android:grantUriPermissions="true" />
+
+    </application>
+
+</manifest>

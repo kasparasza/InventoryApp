@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorBackground"
+    tools:context="com.example.kasparasza.inventoryapp.AllInventoryViewActivity">
+
+    <TextView
+        android:id="@+id/item_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:padding="@dimen/padding_margin_03"
+        style="@style/HeaderText"
+        tools:text="Name of an item shall be displayed here..." />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1dp"
+        android:layout_weight="2"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="@dimen/_1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <!-- the final dimensions of the image are set in java file of the activity-->
+        <ImageView
+            android:id="@+id/item_image"
+            android:layout_width="@dimen/image_width_02"
+            android:layout_height="@dimen/image_height_02"
+            android:layout_gravity="center"
+            tools:src="@mipmap/ic_launcher"
+            android:scaleType="fitCenter" />
+
+        <View
+            android:layout_width="@dimen/_1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/item_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:gravity="center"
+        android:layout_marginLeft="@dimen/padding_margin_03"
+        android:layout_marginRight="@dimen/padding_margin_03"
+        android:layout_marginTop="@dimen/padding_margin_04"
+        android:layout_marginBottom="@dimen/padding_margin_04"
+        tools:text="Description of an item shall be displayed here..." />
+
+    <RelativeLayout
+        android:id="@+id/container_for_adapter_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1dp"
+        android:layout_weight="3">
+
+        <ListView
+            android:id="@+id/list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:descendantFocusability="blocksDescendants"/>
+        <!-- attribute descendantFocusability="blocksDescendants"
+ allows to have separate Click events for ListView items and
+ Buttons / TextViews that are contained by these ListView items -->
+
+        <Button
+            android:id="@+id/button_add_inventory_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_shape"
+            android:text="@string/all_inventory_add_item_text"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/padding_margin_02" />
+
+        <!-- Empty view for the list -->
+        <RelativeLayout
+            android:id="@+id/empty_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:id="@+id/empty_view_title_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                style="@style/HeaderText"
+                android:text="@string/all_inventory_empty_view_title_text"/>
+
+            <TextView
+                android:id="@+id/empty_view_other_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/empty_view_title_text"
+                android:gravity="center"
+                style="@style/HeaderText_Small"
+                android:textColor="@color/colorGrey"
+                android:text="@string/all_inventory_empty_view_other_text" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>
