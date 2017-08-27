@@ -10,17 +10,17 @@ import android.provider.BaseColumns;
 
 public class InventoryContract {
 
+    // Uri objects that hold Uri for communication with content provider
+    public static final String CONTENT_AUTHORITY = "com.example.kasparasza.inventoryapp.database";
+    public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
+    public static final String PATH_FRUIT = FruitEntry.TABLE_NAME;
     // Logcat tag String
     private static final String LOG_TAG = InventoryContract.class.getSimpleName();
 
     // To prevent someone from accidentally instantiating the contract class,
     // make the constructor private.
-    private InventoryContract() {}
-
-    // Uri objects that hold Uri for communication with content provider
-    public static final String CONTENT_AUTHORITY = "com.example.kasparasza.inventoryapp.database";
-    public static final Uri BASE_CONTENT_URI = Uri.parse("content://"+CONTENT_AUTHORITY);
-    public static final String PATH_FRUIT = FruitEntry.TABLE_NAME;
+    private InventoryContract() {
+    }
 
     /* Inner class that defines the table contents */
     public static class FruitEntry implements BaseColumns {

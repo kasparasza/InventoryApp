@@ -150,7 +150,7 @@ public class EditInventoryActivity extends AppCompatActivity implements LoaderMa
             startActivityForResult(Intent.createChooser(selectImageIntent, getString(R.string.edit_inventory_image_intent_chooser_text)), PICK_IMAGE_CALL_IDENTIFIER);
             // the result of the activity is received/ handled by onActivityResult() method
         }
-    } //--------------------------------------------------------------> gal atsisakyti create chooser -------------------------------------
+    }
 
     // Set up of OnClickListener to save edits made to the inventory item
     @OnClick(R.id.button_save_input)

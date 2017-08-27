@@ -7,6 +7,7 @@ import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -15,11 +16,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.kasparasza.inventoryapp.database.InventoryContract.FruitEntry;
 
@@ -51,6 +54,8 @@ public class AllInventoryViewActivity extends AppCompatActivity implements Loade
     private static final String LIST_VIEW_TOP = "LIST_VIEW_TOP";
     public static final String DIALOG_DELETE_ALL_ITEMS = "DIALOG_DELETE_ALL_ITEMS";
     public static final String DIALOG_INSERT_ITEMS = "DIALOG_INSERT_ITEMS";
+    private static final String SHARED_PREF_TOUCH_EVENTS = "SHARED_PREF_TOUCH_EVENTS";
+    private static final String COUNT_OF_ON_TOUCH_EVENTS = "COUNT_OF_ON_TOUCH_EVENTS";
 
     // Global objects & variables:
     private InventoryCursorAdapter cursorAdapter;
@@ -64,6 +69,7 @@ public class AllInventoryViewActivity extends AppCompatActivity implements Loade
     private Boolean dialogInsertDummyItemsIsOpen = false;
     private AlertDialog alertDialogDeleteAllItems;
     private AlertDialog alertDialogInsertDummyItems;
+    private int countOfTouchEvents = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +78,11 @@ public class AllInventoryViewActivity extends AppCompatActivity implements Loade
 
         // Binding / initialisation - committing the annotations being used to the UI
         ButterKnife.bind(this);
+
+        // Restore preferences
+        // File creation mode -  MODE_PRIVATE: the default mode, where the created file can only be accessed by the calling application
+        SharedPreferences settings = getSharedPreferences(SHARED_PREF_TOUCH_EVENTS, MODE_PRIVATE);
+        countOfTouchEvents = settings.getInt(COUNT_OF_ON_TOUCH_EVENTS, 0);
 
         // initialisation of Cursor adapter and binding it to the ListView;
         // at first the second argument - Cursor - is set to null, it will be replaced by
@@ -114,6 +125,26 @@ public class AllInventoryViewActivity extends AppCompatActivity implements Loade
                 openItemDetailsActivity.setData(itemClickedUri);
                 // start the Activity
                 startActivity(openItemDetailsActivity);
+                return false;
+            }
+        });
+
+        // Setting onTouch Listener for items in the ListView
+        // the aim is to provide a Toast message for the user about the functionality of OnLongClick
+        // the message has to be shown only if these are one of the initial Touch events
+        listView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                // increase the variable that counts the touch events
+                // further on this variable is being saved to SharedPreferences
+                countOfTouchEvents ++;
+
+                // if these are one of the initial touch events (the count is 1 or 2)
+                // a Toast message is displayed with an explanation of the list view functionality
+                // otherwise - no action is performed (as the user has already been informed about the functionality)
+                if (countOfTouchEvents <= 3 ){
+                    Toast.makeText(getApplicationContext(), R.string.toast_info_about_long_click_action, Toast.LENGTH_SHORT).show();
+                }
                 return false;
             }
         });
@@ -286,6 +317,7 @@ public class AllInventoryViewActivity extends AppCompatActivity implements Loade
         outState.putInt(LIST_VIEW_TOP, top);
         outState.putBoolean(DIALOG_DELETE_ALL_ITEMS, dialogDeleteAllItemsIsOpen);
         outState.putBoolean(DIALOG_INSERT_ITEMS, dialogInsertDummyItemsIsOpen);
+        outState.putInt(COUNT_OF_ON_TOUCH_EVENTS, countOfTouchEvents);
 
         // Always call the superclass so it can save the view hierarchy state
         super.onSaveInstanceState(outState);
@@ -305,8 +337,8 @@ public class AllInventoryViewActivity extends AppCompatActivity implements Loade
             selectedItem = savedInstanceState.getInt(ITEM_POSITION);
             dialogDeleteAllItemsIsOpen = savedInstanceState.getBoolean(DIALOG_DELETE_ALL_ITEMS);
             dialogInsertDummyItemsIsOpen = savedInstanceState.getBoolean(DIALOG_INSERT_ITEMS);
+            countOfTouchEvents = savedInstanceState.getInt(COUNT_OF_ON_TOUCH_EVENTS);
 
-            // del sito irgi gali buti problemu gal -------------------------------------------may need debugging------------------------------------------------
             int index = savedInstanceState.getInt(LIST_VIEW_ITEM_INDEX, 0); // data about the state of the ListView - index and top positions
             int top = savedInstanceState.getInt(LIST_VIEW_TOP, 0);
 
@@ -327,6 +359,7 @@ public class AllInventoryViewActivity extends AppCompatActivity implements Loade
         }
     }
 
+
     /**
      * Method that performs necessary "last" actions before the Activity is about to be closed
      * e.g.: dismisses any open alert dialogs
@@ -342,6 +375,29 @@ public class AllInventoryViewActivity extends AppCompatActivity implements Loade
         if (alertDialogInsertDummyItems != null) {
             alertDialogInsertDummyItems.dismiss();
         }
+
+        // write information to / update SharedPreferences
+        // NOTE: a modification  - an additional Activity Lifecycle method will be necessary
+        // if the following Activity attribute is removed from the manifest: android:launchMode="singleTop"
+        SharedPreferences.Editor editor = getSharedPreferences(SHARED_PREF_TOUCH_EVENTS, MODE_PRIVATE).edit();
+        editor.putInt(COUNT_OF_ON_TOUCH_EVENTS, countOfTouchEvents);
+        editor.commit();
+    }
+
+    /**
+     * Deletes the settings that the user has made upon the exit.
+     * Reason - in the new run session of the app it is preferred to reset the SharedPreferences variables to their
+     * initial state.
+     * onDestroy may not be called if the app is being killed by the Android system,
+     * however, in most of the sessions this may not be the case; onDestroy will be called during a subsequent session
+     */
+    @Override
+    protected void onDestroy() {
+        // clear the data / settings stored in SharedPreferences
+        SharedPreferences.Editor editor = getSharedPreferences(SHARED_PREF_TOUCH_EVENTS, MODE_PRIVATE).edit();
+        editor.clear();
+        editor.commit();
+        super.onDestroy();
     }
 
     ////////

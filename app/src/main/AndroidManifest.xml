@@ -25,7 +25,11 @@
         </activity>
 
         <!-- parent activity -->
-        <activity android:name=".AllInventoryViewActivity"/>
+        <activity
+            android:name=".AllInventoryViewActivity"
+            android:launchMode="singleTop"/>
+        <!-- attribute launchMode="singleTop" recreates the ListView displayed in the Activity to its previous state at the
+        time when the Activity was Paused -->
 
         <!-- child activity -->
         <activity

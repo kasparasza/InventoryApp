@@ -9,10 +9,12 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.PhoneNumberUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +24,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.kasparasza.inventoryapp.database.InventoryContract.FruitEntry;
+
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -354,7 +358,13 @@ public class ItemDetailsActivity extends AppCompatActivity implements LoaderMana
             itemImage.setImageBitmap(itemImageBitmap);
             supplierName.setText(supplierNameString);
             supplierEMail.setText(supplierEMailString);
-            supplierPhone.setText(supplierPhoneString);
+            // depending on the SDK version of the System, set the supplierPhone String
+            // to be displayed in PhoneNumber format
+            if (Build.VERSION.SDK_INT < 21) {
+                supplierPhone.setText(PhoneNumberUtils.formatNumber(supplierPhoneString));
+            } else {
+                supplierPhone.setText(PhoneNumberUtils.formatNumber(supplierPhoneString, "LT"));
+            }
         }
     }
 

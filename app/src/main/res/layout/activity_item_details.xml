@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     android:orientation="vertical"
     android:padding="@dimen/padding_margin_03"
-    android:background="@color/colorBackground"
     tools:context="com.example.kasparasza.inventoryapp.ItemDetailsActivity">
 
     <ScrollView
@@ -20,10 +20,10 @@
 
             <TextView
                 android:id="@+id/item_name"
+                style="@style/HeaderText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                style="@style/HeaderText"
                 tools:text="Name of an item shall be displayed here" />
 
             <LinearLayout
@@ -56,8 +56,8 @@
                 android:id="@+id/item_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/padding_margin_04"
                 android:layout_marginBottom="@dimen/padding_margin_04"
+                android:layout_marginTop="@dimen/padding_margin_04"
                 tools:text="Description of an item shall be displayed here" />
 
             <LinearLayout
@@ -68,8 +68,8 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="2">
+                    android:layout_weight="2"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -89,8 +89,8 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="2">
+                    android:layout_weight="2"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -103,8 +103,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:textStyle="bold"
                         android:textColor="@color/colorPrimaryDark"
+                        android:textStyle="bold"
                         tools:text="10 kg" />
 
                 </LinearLayout>
@@ -118,45 +118,45 @@
                         android:id="@+id/button_add_one"
                         android:layout_width="@dimen/button_width_01"
                         android:layout_height="@dimen/button_width_01"
-                        android:background="@drawable/button_shape"
-                        android:textColor="@color/colorWhite"
                         android:layout_margin="@dimen/padding_margin_03"
-                        android:textStyle="bold"
-                        android:text="@string/item_details_add_one_button" />
+                        android:background="@drawable/button_shape"
+                        android:text="@string/item_details_add_one_button"
+                        android:textColor="@color/colorWhite"
+                        android:textStyle="bold" />
 
                     <Button
                         android:id="@+id/button_decrease_by_one"
                         android:layout_width="@dimen/button_width_01"
                         android:layout_height="@dimen/button_width_01"
                         android:layout_below="@id/button_add_one"
-                        android:background="@drawable/button_shape"
-                        android:textColor="@color/colorWhite"
                         android:layout_margin="@dimen/padding_margin_03"
-                        android:textStyle="bold"
-                        android:text="@string/item_details_decrease_by_one_button" />
+                        android:background="@drawable/button_shape"
+                        android:text="@string/item_details_decrease_by_one_button"
+                        android:textColor="@color/colorWhite"
+                        android:textStyle="bold" />
 
                     <Button
                         android:id="@+id/button_add_ten"
                         android:layout_width="@dimen/button_width_01"
                         android:layout_height="@dimen/button_width_01"
+                        android:layout_margin="@dimen/padding_margin_03"
                         android:layout_toRightOf="@id/button_decrease_by_one"
                         android:background="@drawable/button_shape"
+                        android:text="@string/item_details_add_ten_button"
                         android:textColor="@color/colorWhite"
-                        android:layout_margin="@dimen/padding_margin_03"
-                        android:textStyle="bold"
-                        android:text="@string/item_details_add_ten_button" />
+                        android:textStyle="bold" />
 
                     <Button
                         android:id="@+id/button_decrease_by_ten"
                         android:layout_width="@dimen/button_width_01"
                         android:layout_height="@dimen/button_width_01"
                         android:layout_below="@id/button_add_one"
+                        android:layout_margin="@dimen/padding_margin_03"
                         android:layout_toRightOf="@id/button_decrease_by_one"
                         android:background="@drawable/button_shape"
+                        android:text="@string/item_details_decrease_by_ten_button"
                         android:textColor="@color/colorWhite"
-                        android:layout_margin="@dimen/padding_margin_03"
-                        android:textStyle="bold"
-                        android:text="@string/item_details_decrease_by_ten_button" />
+                        android:textStyle="bold" />
 
                 </RelativeLayout>
 
@@ -166,18 +166,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/padding_margin_03"
+                android:text="@string/item_details_supplier_header"
                 android:textColor="@color/colorBlack"
-                android:textStyle="bold"
-                android:text="@string/item_details_supplier_header" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/supplier_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/padding_margin_04"
                 android:layout_marginBottom="@dimen/padding_margin_04"
-                android:textColor="@color/colorBlack"
                 android:layout_marginLeft="@dimen/padding_margin_03"
+                android:layout_marginTop="@dimen/padding_margin_04"
+                android:textColor="@color/colorBlack"
                 tools:text="Name of the supplier" />
 
             <LinearLayout
@@ -189,7 +189,7 @@
                     android:id="@+id/action_send_mail"
                     android:layout_width="@dimen/button_width_01"
                     android:layout_height="@dimen/button_height_01"
-                    android:src="@drawable/ic_send_email"/>
+                    android:src="@drawable/ic_send_email" />
 
                 <TextView
                     android:id="@+id/supplier_e_mail"
@@ -210,7 +210,7 @@
                     android:id="@+id/action_call"
                     android:layout_width="@dimen/button_width_01"
                     android:layout_height="@dimen/button_height_01"
-                    android:src="@drawable/ic_make_a_call"/>
+                    android:src="@drawable/ic_make_a_call" />
 
                 <TextView
                     android:id="@+id/supplier_phone"
@@ -224,7 +224,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/button_height_01"/>
+                android:layout_height="@dimen/button_height_01" />
 
         </LinearLayout>
 
@@ -236,10 +236,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/padding_margin_02"
         android:background="@drawable/button_shape"
-        android:textColor="@color/colorWhite"
-        android:textStyle="bold"
         android:text="@string/item_details_edit_item_text"
-        android:layout_margin="@dimen/padding_margin_02" />
+        android:textColor="@color/colorWhite"
+        android:textStyle="bold" />
 
 </RelativeLayout>

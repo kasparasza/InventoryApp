@@ -256,8 +256,8 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="6"
                     android:layout_gravity="center"
+                    android:layout_weight="6"
                     android:text="@string/edit_inventory_supplier_email_header"
                     android:textColor="@color/colorBlack" />
 
@@ -318,7 +318,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/button_height_01"/>
+                android:layout_height="@dimen/button_height_01" />
 
         </LinearLayout>
 

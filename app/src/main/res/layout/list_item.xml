@@ -9,16 +9,16 @@
     <LinearLayout
         android:layout_width="@dimen/_1dp"
         android:layout_height="wrap_content"
-        android:layout_weight="7"
         android:layout_marginLeft="@dimen/padding_margin_03"
+        android:layout_weight="7"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/item_name"
+            style="@style/HeaderText_Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            style="@style/HeaderText_Small"
             android:maxLines="1"
             tools:text="Name of an item goes here. This one is a long name for an item to test." />
 
@@ -47,8 +47,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textStyle="bold"
             android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
             tools:text="10 kg" />
 
     </LinearLayout>
@@ -61,9 +61,9 @@
         android:id="@+id/sell_item_button"
         android:layout_width="@dimen/_1dp"
         android:layout_height="match_parent"
-        android:background="@color/colorButtons"
         android:layout_marginRight="@dimen/padding_margin_03"
         android:layout_weight="2"
+        android:background="@color/colorButtons"
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:scaleType="center">
@@ -71,7 +71,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_shopping_basket"/>
+            android:src="@drawable/ic_shopping_basket" />
 
     </LinearLayout>
     <!-- attributes: focusable="false" & focusableInTouchMode="false"

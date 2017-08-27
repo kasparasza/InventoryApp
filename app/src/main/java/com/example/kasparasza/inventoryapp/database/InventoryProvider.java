@@ -34,7 +34,7 @@ public class InventoryProvider extends ContentProvider {
     // URI matcher code for the content URI for the specific row from fruit table
     public static final int FRUIT_ID = 101;
 
-    /** Declaration of global variables & objectss */
+    /** Declaration of global variables & objects */
 
     // Helper object that will perform communication with the db
     private InventoryDbHelper mDbHelper = null;
@@ -428,7 +428,6 @@ public class InventoryProvider extends ContentProvider {
         // Check that quantity is not null and is not negative
         // currently quantity quantity cannot be null, as in EditInventoryActivity empty String input
         // is set to be equal to "0". However, this check is left here in case there are changes in other parts of the code.
-        //--------------------------------------------------------------------> ar quantity input vis dar yra String, ar nepasikeite Edit activity?
         if(values.containsKey(FruitEntry.COLUMN_QUANTITY)){
             Integer quantity = values.getAsInteger(FruitEntry.COLUMN_QUANTITY);
             if(quantity == null || quantity < 0){

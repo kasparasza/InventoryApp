@@ -100,7 +100,7 @@ public class InventoryCursorAdapter extends CursorAdapter {
                     contentValues.put(FruitEntry.COLUMN_QUANTITY, itemQuantityInteger - 1);
 
                     // call the method to update the db records
-                    int result = context.getContentResolver().update(fruitUri, contentValues, null, null); // -------------> reikia toast ir gal pasalinti ta int
+                    int result = context.getContentResolver().update(fruitUri, contentValues, null, null);
                 }
             }
         });

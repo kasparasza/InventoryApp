@@ -21,6 +21,7 @@
     <string name="toast_quantity_value_bounds_with_value_provided">Quantity cannot be greater than %1$d.</string>
     <string name="toast_delete_from_db_success">Information successfully deleted.</string>
     <string name="toast_delete_from_db_error">An error was encountered while trying to delete.</string>
+    <string name="toast_info_about_long_click_action">A longer click of an item in the list, will open it\'s detailed information.</string>
 
     <!-- Strings used in Dialogs -->
     <string name="dialog_question_unsaved_changes">There are unsaved changes.</string>
