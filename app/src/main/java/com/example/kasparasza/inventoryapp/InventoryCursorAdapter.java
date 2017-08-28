@@ -1,25 +1,19 @@
 package com.example.kasparasza.inventoryapp;
 
-import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CursorAdapter;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.kasparasza.inventoryapp.database.InventoryContract.FruitEntry;
-
-import butterknife.BindView;
 
 /**
  * custom CursorAdapter that is used to populate the ListView of all inventory items
@@ -34,6 +28,18 @@ public class InventoryCursorAdapter extends CursorAdapter {
         super(context, cursor, 0);
     }
 
+    // a helper class to cache looking for view each time (and setting it as a tag for the row View)
+    // implementation of the View Holder pattern in the adapter will allow:
+    // to avoid numerous findViewById() calls during the ListView scrolling, as
+    // UI objects will only be instantiated once and will be reused afterwards.
+    // View Holder pattern will improve the performance of the ListView scrolling
+    private static class ViewHolder{
+        TextView itemName;
+        TextView itemQuantity;
+        TextView itemPrice;
+        LinearLayout sellItemButton;
+    }
+
     /**
      * Method returns a new view (list view item) to hold the data pointed to by cursor
      *
@@ -45,7 +51,24 @@ public class InventoryCursorAdapter extends CursorAdapter {
      */
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup viewGroup) {
-        return LayoutInflater.from(context).inflate(R.layout.list_item, viewGroup, false);
+        // inflate a new view / list item view
+        View view = LayoutInflater.from(context).inflate(R.layout.list_item, viewGroup, false);
+
+        // instantiate ViewHolder object and attach the particular UI views that this object will hold
+        ViewHolder myViewHolder = new ViewHolder();
+        myViewHolder.itemName = (TextView) view.findViewById(R.id.item_name);
+        myViewHolder.itemQuantity = (TextView) view.findViewById(R.id.item_quantity);
+        myViewHolder.itemPrice = (TextView) view.findViewById(R.id.item_price);
+        myViewHolder.sellItemButton = (LinearLayout) view.findViewById(R.id.sell_item_button);
+
+        // we associate / store our ViewHolder object within the newly created list item view
+        // a method "void setTag (int key, Object tag)" is used instead of "void setTag (Object tag)"
+        // in order to make it more obvious & descriptive which object is being associated with a particular view
+        // NOTE: the key is optional in the case of ViewHolder pattern, but it is recommended in other cases
+        view.setTag(R.id.list_item_view, myViewHolder);
+
+        // return the prepared view
+        return view;
     }
 
     /**
@@ -64,23 +87,24 @@ public class InventoryCursorAdapter extends CursorAdapter {
         Float itemPriceFloat = cursor.getFloat(cursor.getColumnIndexOrThrow(FruitEntry.COLUMN_PRICE));
         final Integer itemQuantityInteger = cursor.getInt(cursor.getColumnIndexOrThrow(FruitEntry.COLUMN_QUANTITY));
 
-        // get relevant views from the layout that will be populated
-        TextView itemName = (TextView) view.findViewById(R.id.item_name);
-        TextView itemQuantity = (TextView) view.findViewById(R.id.item_quantity);
-        TextView itemPrice = (TextView) view.findViewById(R.id.item_price);
-        LinearLayout sellItemButton = (LinearLayout) view.findViewById(R.id.sell_item_button);
+        // instantiate a ViewHolder object
+        // in this case our ViewHolder object is a view that already holds the child views of the UI,
+        // that will be populated.
+        // We use a unique tag to fetch it
+        ViewHolder holder = (ViewHolder) view.getTag(R.id.list_item_view);
 
         // bind the data to the relevant views
-        itemName.setText(itemNameString);
-        itemQuantity.setText(itemQuantityInteger.toString().concat(context.getString(R.string.all_inventory_quantity_measurement_kg)));
-        itemPrice.setText(context.getString(R.string.all_inventory_price_text, itemPriceFloat));
+        holder.itemName.setText(itemNameString);
+        holder.itemQuantity.setText(itemQuantityInteger.toString().concat(context.getString(R.string.all_inventory_quantity_measurement_kg)));
+        holder.itemPrice.setText(context.getString(R.string.all_inventory_price_text, itemPriceFloat));
 
         // get position of the view in the Parent viewGroup - the position is equal to the ID of the _ID column
         final int position = cursor.getInt(cursor.getColumnIndexOrThrow(FruitEntry._ID));
 
         // set OnClickListener for the sellItem Button
-        // (Sale Button reduces the quantity available by one)
-        sellItemButton.setOnClickListener(new View.OnClickListener() {
+        // (Sale Button reduces the quantity available by one).
+        // bind the data to the relevant views
+        holder.sellItemButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // if the current quantity is already zero - no action to decrease it further is performed;
